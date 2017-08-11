@@ -1,11 +1,11 @@
-<div style="padding:40px;margin:40px;border:1px solid #ccc">
-	<h1>picture</h1>
-	<form action="#" method="post" enctype="multipart/form-data">
-		{% csrf_token %} {{form}} 
-		<input type="submit" value="Upload" />
-	</form>
-	{% for img in images %}
-		{{forloop.counter}}.<a href="{{ img.pic.url }}">{{ img.pic.name }}</a>
-		({{img.upload_date}})<hr />
-	{% endfor %}
-</div>
+	<div style="padding:40px;margin:40px;border:1px solid #ccc">
+		<h1>picture</h1>
+		<form action="#" method="post" enctype="multipart/form-data">
+			{% csrf_token %} {{form}} 
+			<input type="submit" value="Upload" />
+		</form>
+		{% for img in images %}
+			{{forloop.counter}}.<a href="{{ img.pic.url }}">{{ img.pic.name }}</a>
+			({{img.upload_date}})<hr />
+		{% endfor %}
+	</div>
