@@ -1,32 +1,39 @@
-# simple django imageupload(django 1.11)
+# simple django imageupload(django 2.x)
 
 ## usage
 
-**On `setting.py` add:**
+### 1. Download the folder `uploader`:
 
-	INSTALLED_APPS = (
-		...
-		'uploader',		
-	)
-	MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media')
-	MEDIA_URL = '/media/'
+Download the folder `uploader` and save it in your project directory.
 
-**On `urls.py` append:**	
-	
-	...<other imports>...
-	from django.conf import settings
-	from django.conf.urls.static import static
-	from uploader import views as uploader_views
-	
-	urlpatterns = [
-		...<other url patterns>...
-		url(r'^upload/$', uploader_views.home, name='imageupload'),
-	]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+### 2. Update `setting.py` of your project:
 
-**Syncronize database and runserver**
+On `setting.py` add:
 
-	>> python manage.py makemigrations
-	>> python manage.py migrate
-	>> python manage.py runserver
+    INSTALLED_APPS = [
+        ...<other apps>...
+        'uploader.apps.UploaderConfig',
+    ]
 
-	visit <http://localhost.com:8000/upload>
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+
+### 3. Update `urls.py` of your project:
+
+On `urls.py` add:   
+    
+    ...<other imports>...
+    from django.urls import path,include
+    
+    urlpatterns = [
+        ...<other url patterns>...
+        path('uploader/', include('uploader.urls'))
+    ]
+
+### 4. Syncronize database
+
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+    $ python manage.py runserver
+
+visit <http://localhost.com:8000/uploader>

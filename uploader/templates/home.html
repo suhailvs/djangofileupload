@@ -5,7 +5,7 @@
 			<input type="submit" value="Upload" />
 		</form>
 		{% for img in images %}
-			{{forloop.counter}}.<a href="{{ img.pic.url }}">{{ img.pic.name }}</a>
+			{{forloop.counter}}.<a href="/uploader{{ img.pic.url }}">{{ img.pic.name }}</a>
 			({{img.upload_date}})<hr />
 		{% endfor %}
 	</div>
