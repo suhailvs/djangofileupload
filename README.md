@@ -37,3 +37,11 @@ On `urls.py` add:
     $ python manage.py runserver
 
 visit <http://localhost.com:8000/uploader>
+
+
+# Heroku
+
++ create and app at https://dashboard.heroku.com/apps/
++ click `Deploy` Tab -> Deploy method `Github`
++ Manual deploy, select `heroku` branch, click `Deploy Branch`
++ logs `$ heroku logs -a djangofileupload` 
