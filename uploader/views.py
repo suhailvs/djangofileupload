@@ -11,5 +11,5 @@ def home(request):
 			return HttpResponseRedirect(reverse('imageupload'))
 	else:
 		img=UploadForm()
-	images=Upload.objects.all()
+	images=Upload.objects.all().order_by('-upload_date')
 	return render(request,'home.html',{'form':img,'images':images})
