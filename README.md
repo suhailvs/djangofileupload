@@ -45,3 +45,4 @@ visit <http://localhost.com:8000/uploader>
 + click `Deploy` Tab -> Deploy method `Github`
 + Manual deploy, select `heroku` branch, click `Deploy Branch`
 + logs `$ heroku logs -a djangofileupload` 
++ heroku run -a djangofileupload python manage.py migrate
