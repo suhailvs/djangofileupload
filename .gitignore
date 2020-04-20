@@ -1,6 +1,5 @@
 #upload folder
 media/
-migrations/
 db.sqlite3
 venv/
 
