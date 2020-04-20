@@ -1,6 +1,6 @@
-# simple django imageupload(django 2.x)
+# simple django imageupload(django 3.x)
 
-## [demo](https://djangofileupload.herokuapp.com/uploader/)
+## [demo](https://djangofileupload.herokuapp.com/)
 
 ## usage
 
@@ -13,8 +13,8 @@ Download the folder `uploader` and save it in your project directory.
 On `setting.py` add:
 
     INSTALLED_APPS = [
+        'uploader',
         ...<other apps>...
-        'uploader.apps.UploaderConfig',
     ]
 
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -29,13 +29,12 @@ On `urls.py` add:
     
     urlpatterns = [
         ...<other url patterns>...
-        path('uploader/', include('uploader.urls'))
+        path('uploader/', include('uploader.urls')),
     ]
 
 ### 4. Syncronize database
 
-    $ python manage.py makemigrations
     $ python manage.py migrate
     $ python manage.py runserver
 
-visit <http://localhost.com:8000/uploader>
+visit <http://localhost:8000/uploader/>
