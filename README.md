@@ -1,42 +1,21 @@
 # simple django imageupload(django 2.x)
 
-## usage
+## Run locally
 
-### 1. Download the folder `uploader`:
+### 1. Set Environment file `.env` in project directory:
 
-Download the folder `uploader` and save it in your project directory.
+    SECRET_KEY=xxxx
+    DATABASE_URL=
+    AWS_ACCESS_KEY_ID=xxxx
+    AWS_SECRET_ACCESS_KEY=xxxx
 
-### 2. Update `setting.py` of your project:
 
-On `setting.py` add:
+### 2. Syncronize database
 
-    INSTALLED_APPS = [
-        ...<other apps>...
-        'uploader.apps.UploaderConfig',
-    ]
-
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
-
-### 3. Update `urls.py` of your project:
-
-On `urls.py` add:   
-    
-    ...<other imports>...
-    from django.urls import path,include
-    
-    urlpatterns = [
-        ...<other url patterns>...
-        path('uploader/', include('uploader.urls'))
-    ]
-
-### 4. Syncronize database
-
-    $ python manage.py makemigrations
     $ python manage.py migrate
     $ python manage.py runserver
 
-visit <http://localhost.com:8000/uploader>
+visit <http://localhost.com:8000/>
 
 
 # Heroku
@@ -44,5 +23,6 @@ visit <http://localhost.com:8000/uploader>
 + create and app at https://dashboard.heroku.com/apps/
 + click `Deploy` Tab -> Deploy method `Github`
 + Manual deploy, select `heroku` branch, click `Deploy Branch`
++ Install heroku `$ sudo snap install --classic heroku`
 + logs `$ heroku logs -a djangofileupload` 
-+ heroku run -a djangofileupload python manage.py migrate
++ `$ heroku run -a djangofileupload python manage.py migrate`

@@ -1,4 +1,5 @@
 #upload folder
+.env
 media/
 #migrations/
 db.sqlite3
