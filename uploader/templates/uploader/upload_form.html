@@ -1,16 +1,63 @@
+{% extends 'base.html' %}
+
 {% load humanize %}
-<div style="padding:40px;margin:40px;border:1px solid #ccc">
-	<h1>Django File Upload</h1>
-	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+
+{% block css %}
+<style type="text/css">
+	#dropContainer {
+    width: 50%;
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 180px;
+    font-size: 20px;
+    color: #ccc;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+  <h2>Django File Upload Example</h2>
+  <div id="dropContainer">
+	   Drop File Here
+	</div>
+	<form method="post" enctype="multipart/form-data" id="frm_fileupload">{% csrf_token %}
 	  {{ form.as_p }}
-	  <button type="submit">Submit</button>
 	</form><hr>
-	<ul>
-	{% for document in documents %}
-		<li>
-			<a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-			<small>({{document.upload_date|naturaltime}})</small>
-		</li>
-	{% endfor %}
-	</ul>
-</div>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Uploaded at</th><th>Size</th></tr>
+    </thead>
+    <tbody>
+      {% for document in documents %}
+        <tr>
+          <td><a href="{{ document.upload_file.url }}" target="_blank">{{ document.upload_file.name }}</a></td>
+          <td>{{ document.upload_date }}<small>({{document.upload_date|naturaltime}})</small></td>
+          <td>{{ document.upload_file.size|filesizeformat }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+document.getElementById("id_upload_file").onchange = function() {
+    document.getElementById("frm_fileupload").submit();
+};
+
+dropContainer.ondragover = dropContainer.ondragenter = function(evt) {
+  evt.preventDefault();
+};
+
+dropContainer.ondrop = function(evt) {
+  // pretty simple -- but not for IE :(
+  id_upload_file.files = evt.dataTransfer.files;
+  evt.preventDefault();
+  document.getElementById("frm_fileupload").submit();
+};
+</script>
+{% endblock %}
+
+
