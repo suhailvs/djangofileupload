@@ -1,4 +1,4 @@
-# simple django imageupload(django 2.x)
+# simple django imageupload(django 3.x)
 
 ## Run locally
 
