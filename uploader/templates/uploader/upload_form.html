@@ -1,16 +1,18 @@
-<div style="padding:40px;margin:40px;border:1px solid #ccc">
-	<h1>Django File Upload</h1>
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
 	<form method="post" enctype="multipart/form-data">
 	  {% csrf_token %}
-	  {{ form.as_p }}
-	  <button type="submit">Submit</button>
+		<input class="form-control form-control-lg" name="upload_file"  id="id_upload_file" type="file" required accept="image/*"  onchange="form.submit()">
 	</form><hr>
-	<ul>
-	{% for document in documents %}
-		<li>
-			<a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-			<small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}</small>
-		</li>
-	{% endfor %}
-	</ul>
+	
+		<div class="row">
+			{% for document in documents %}
+			<div class="col-md-4">
+				<img src="{{ document.upload_file.url }}" class="img-thumbnail" alt="">
+			</div>
+			{% endfor %}
+		</div>
 </div>
+{% endblock %}
+
